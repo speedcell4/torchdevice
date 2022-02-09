@@ -13,6 +13,7 @@ setup(
     python_requires='>=3.7',
     description='',
     install_requires=[
+        'torch',
         'filelock',
     ],
     extras_require={
