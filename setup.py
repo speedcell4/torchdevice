@@ -10,7 +10,7 @@ setup(
     license='MIT',
     author='speedcell4',
     author_email='speedcell4@gmail.com',
-    python_requires='>=3.7',
+    python_requires='>=3.8',
     description='',
     install_requires=[
         'torch',
