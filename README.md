@@ -1,9 +1,15 @@
+<div align="center">
+
 # TorchDevice
 
-[![Actions Status](https://github.com/speedcell4/torchdevice/workflows/unit-tests/badge.svg)](https://github.com/speedcell4/torchdevice/actions)
-[![PyPI version](https://badge.fury.io/py/torchdevice.svg)](https://badge.fury.io/py/torchdevice)
-[![Downloads](https://pepy.tech/badge/torchdevice)](https://pepy.tech/project/torchdevice)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/speedcell4/torchdevice/unit-tests.yml?cacheSeconds=0)
+![PyPI - Version](https://img.shields.io/pypi/v/torchdevice?label=pypi%20version&cacheSeconds=0)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/torchdevice?cacheSeconds=0)
 
-## Install
+</div>
 
-- `python -m pip install torchdevice`
+Setup `CUDA_VISIBLE_DEVICES`.
+
+## Installation
+
+`python -m pip torchdevice`
