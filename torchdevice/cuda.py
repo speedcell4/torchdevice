@@ -1,19 +1,21 @@
 import os
 import socket
 import subprocess
-from filelock import FileLock
 from pathlib import Path
 from typing import List
+
+from filelock import FileLock
 
 
 def set_cuda_visible_devices(n: int = 1) -> List[int]:
     CUDA_VISIBLE_DEVICES = 'CUDA_VISIBLE_DEVICES'
+    cuda_visible_devices = os.environ.get(CUDA_VISIBLE_DEVICES, '').strip()
 
     if CUDA_VISIBLE_DEVICES in os.environ:
         try:
-            return [int(device) for device in os.environ[CUDA_VISIBLE_DEVICES].split(',')]
+            return [int(device) for device in cuda_visible_devices.split(',')]
         except ValueError:
-            pass
+            print(f'ignore existing {CUDA_VISIBLE_DEVICES} = {cuda_visible_devices}')
 
     with FileLock(str(Path.home() / f'.{CUDA_VISIBLE_DEVICES}.{socket.gethostname()}')):
         statuses = subprocess.check_output('nvidia-smi -q -d PIDS | grep Processes', shell=True)
