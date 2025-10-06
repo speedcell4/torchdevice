@@ -2,15 +2,14 @@ import os
 import socket
 import subprocess
 from pathlib import Path
-from typing import List
 
 from filelock import FileLock
 
 
-def occupy(devices: List[int]):
+def occupy(n: int):
     import torch
 
-    for index in devices:
+    for index in range(n):
         _ = torch.empty((1,), device=torch.device(f'cuda:{index}'))
 
 
@@ -20,7 +19,8 @@ def set_cuda_visible_devices(n: int = 1) -> None:
 
     if CUDA_VISIBLE_DEVICES in os.environ:
         try:
-            return occupy([int(device) for device in cuda_visible_devices.split(',')])
+            _ = [int(device) for device in cuda_visible_devices.split(',')]
+            return occupy(n)
         except ValueError:
             print(f'ignore existing {CUDA_VISIBLE_DEVICES} = {cuda_visible_devices}')
 
@@ -33,4 +33,4 @@ def set_cuda_visible_devices(n: int = 1) -> None:
 
         os.environ[CUDA_VISIBLE_DEVICES] = ','.join(map(str, devices[:n]))
         print(f'{CUDA_VISIBLE_DEVICES} <- {os.environ[CUDA_VISIBLE_DEVICES]}')
-        return occupy(devices)
+        return occupy(n)
